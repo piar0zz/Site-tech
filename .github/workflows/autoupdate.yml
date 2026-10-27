@@ -1,0 +1,32 @@
+name: Auto Translate & Update Tech News
+
+on:
+  schedule:
+    - cron: '0 6,18 * * *'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install Dependencies
+        run: |
+          pip install deep-translator
+
+      - name: Run Parser and Translator
+        run: python autoparser.py
+
+      - name: Commit and Push changes
+        run: |
+          git config --global user.name 'TechBot'
+          git config --global user.email 'bot@github.com'
+          git add posts.json
+          git commit -m "Auto-translate and add new posts" || exit 0
+          git push
