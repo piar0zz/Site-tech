@@ -5,7 +5,7 @@ on:
     - cron: '0 6,18 * * *'
   workflow_dispatch:
 
-# ВАЖНО: Даем разрешение роботу на чтение и запись в репозиторий
+# Права на запись для корректной работы git push
 permissions:
   contents: write
 
@@ -16,7 +16,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Set up Python
-        uses: setup-python@v4
+        uses: actions/setup-python@v4
         with:
           python-version: '3.x'
 
@@ -31,6 +31,6 @@ jobs:
         run: |
           git config --global user.name 'TechBot'
           git config --global user.email 'bot@github.com'
-          git add posts.json
-          git commit -m "Auto-translate and add new posts" || exit 0
+          git add posts.json sitemap.xml
+          git commit -m "Auto-translate and update tech posts & sitemap" || exit 0
           git push
