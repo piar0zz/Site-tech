@@ -32,5 +32,4 @@ jobs:
           git config --global user.email 'bot@github.com'
           git add posts.json sitemap.xml rss.xml
           git commit -m "Auto-translate and update tech posts, sitemap & RSS" || exit 0
-          git pull origin main --rebase
-          git push origin main
+          git push origin main --force
