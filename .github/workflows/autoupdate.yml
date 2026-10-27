@@ -1,3 +1,4 @@
+
 name: Auto Translate & Update Tech News
 
 on:
@@ -12,7 +13,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -30,6 +34,8 @@ jobs:
         run: |
           git config --global user.name 'TechBot'
           git config --global user.email 'bot@github.com'
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+          git pull origin main --rebase || echo "No rebase needed"
           git add posts.json sitemap.xml rss.xml
           git commit -m "Auto-translate and update tech posts, sitemap & RSS" || exit 0
-          git push origin main --force
+          git push origin main
