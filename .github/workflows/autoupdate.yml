@@ -1,3 +1,4 @@
+
 name: Auto Translate & Update Tech News
 
 on:
@@ -30,7 +31,8 @@ jobs:
         run: |
           git config --global user.name 'TechBot'
           git config --global user.email 'bot@github.com'
-          git pull --rebase origin main || true
+          git fetch origin main
+          git reset --mixed origin/main || true
           git add posts.json sitemap.xml rss.xml
           git commit -m "Auto-translate and update tech posts, sitemap & RSS" || exit 0
-          git push
+          git push origin main
