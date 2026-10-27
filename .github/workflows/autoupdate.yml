@@ -5,6 +5,10 @@ on:
     - cron: '0 6,18 * * *'
   workflow_dispatch:
 
+# ВАЖНО: Даем разрешение роботу на чтение и запись в репозиторий
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -12,7 +16,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: setup-python@v4
         with:
           python-version: '3.x'
 
