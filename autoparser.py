@@ -1,4 +1,3 @@
-
 import urllib.request
 import xml.etree.ElementTree as ET
 import json
@@ -40,6 +39,8 @@ def slugify(text):
     return re.sub(r'-+', '-', slug).strip('-')[:60]
 
 def clean_html(raw_html):
+    if not raw_html:
+        return ""
     return re.sub(r'<[^>]+>', '', raw_html).strip()
 
 def safe_translate(text):
@@ -47,7 +48,7 @@ def safe_translate(text):
         return ""
     try:
         text_clean = re.sub(r'[\r\n]+', ' ', text)
-        translated = translator.translate(text_clean[:1800])
+        translated = translator.translate(text_clean[:1500])
         return translated if translated else text
     except Exception as e:
         print(f"Ошибка перевода: {e}")
@@ -61,7 +62,7 @@ def is_tech_or_home_news(title):
         'gadget', 'chip', 'memory', 'ssd', 'ps5', 'xbox', 'nintendo', 'smart',
         'vacuum', 'robot', 'coffee', 'kitchen', 'appliance', 'home', 'washer',
         'смартфон', 'процессор', 'видеокарта', 'экран', 'камера', 'пылесос', 
-        'умный дом', 'техника', 'кухня', 'чайник', 'утюг'
+        'умный дом', 'техника', 'кухня'
     ]
     forbidden = ['policy', 'court', 'lawsuit', 'government', 'election', 'politics', 'deal', 'stock market']
     if any(f in t for f in forbidden):
@@ -82,39 +83,41 @@ def detect_category(title):
 def generate_sitemap_and_rss(posts):
     domain = "https://piar0zz.github.io/site-tech/"
     
-    # Sitemap.xml
-    sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n'
-    sitemap += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-    sitemap += f'  <url>\n    <loc>{domain}</loc>\n    <changefreq>hourly</changefreq>\n    <priority>1.0</priority>\n  </url>\n'
-    for p in posts:
-        sitemap += f'  <url>\n    <loc>{domain}#{p["slug"]}</loc>\n    <changefreq>weekly</changefreq>\n    <priority>0.8</priority>\n  </url>\n'
-    sitemap += '</urlset>'
-    with open('sitemap.xml', 'w', encoding='utf-8') as f:
-        f.write(sitemap)
+    try:
+        sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n'
+        sitemap += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+        sitemap += f'  <url>\n    <loc>{domain}</loc>\n    <changefreq>hourly</changefreq>\n    <priority>1.0</priority>\n  </url>\n'
+        for p in posts:
+            sitemap += f'  <url>\n    <loc>{domain}#{p["slug"]}</loc>\n    <changefreq>weekly</changefreq>\n    <priority>0.8</priority>\n  </url>\n'
+        sitemap += '</urlset>'
+        with open('sitemap.xml', 'w', encoding='utf-8') as f:
+            f.write(sitemap)
+    except Exception as e:
+        print(f"Ошибка генерации sitemap: {e}")
 
-    # RSS.xml для Pinterest и агрегаторов
-    rss = '<?xml version="1.0" encoding="UTF-8" ?>\n'
-    rss += '<rss version="2.0">\n<channel>\n'
-    rss += '  <title>ТехноОбзор — Тесты и обзоры техники</title>\n'
-    rss += f'  <link>{domain}</link>\n'
-    rss += '  <description>Независимые обзоры смартфонов, железа, гаджетов и бытовой техники</description>\n'
-    rss += '  <language>ru-RU</language>\n'
-    
-    for p in posts[:30]:
-        rss += '  <item>\n'
-        rss += f'    <title><![CDATA[{p["title"]}]]></title>\n'
-        rss += f'    <link>{domain}#{p["slug"]}</link>\n'
-        rss += f'    <guid>{domain}#{p["slug"]}</guid>\n'
-        rss += f'    <description><![CDATA[{p["description"]}]]></description>\n'
-        rss += f'    <category>{p["category"]}</category>\n'
-        rss += f'    <pubDate>{p["date"]}</pubDate>\n'
-        rss += '  </item>\n'
+    try:
+        rss = '<?xml version="1.0" encoding="UTF-8" ?>\n'
+        rss += '<rss version="2.0">\n<channel>\n'
+        rss += '  <title>ТехноОбзор — Тесты и обзоры техники</title>\n'
+        rss += f'  <link>{domain}</link>\n'
+        rss += '  <description>Независимые обзоры смартфонов, железа, гаджетов и бытовой техники</description>\n'
+        rss += '  <language>ru-RU</language>\n'
         
-    rss += '</channel>\n</rss>'
-    with open('rss.xml', 'w', encoding='utf-8') as f:
-        f.write(rss)
-    
-    print("SEO Карты сайта и RSS успешно обновлены!")
+        for p in posts[:30]:
+            rss += '  <item>\n'
+            rss += f'    <title><![CDATA[{p["title"]}]]></title>\n'
+            rss += f'    <link>{domain}#{p["slug"]}</link>\n'
+            rss += f'    <guid>{domain}#{p["slug"]}</guid>\n'
+            rss += f'    <description><![CDATA[{p["description"]}]]></description>\n'
+            rss += f'    <category>{p["category"]}</category>\n'
+            rss += f'    <pubDate>{p["date"]}</pubDate>\n'
+            rss += '  </item>\n'
+            
+        rss += '</channel>\n</rss>'
+        with open('rss.xml', 'w', encoding='utf-8') as f:
+            f.write(rss)
+    except Exception as e:
+        print(f"Ошибка генерации RSS: {e}")
 
 def fetch_and_translate_rss():
     posts = []
@@ -132,7 +135,7 @@ def fetch_and_translate_rss():
     for url in FOREIGN_RSS:
         try:
             req = urllib.request.Request(url, headers=headers)
-            with urllib.request.urlopen(req) as response:
+            with urllib.request.urlopen(req, timeout=10) as response:
                 xml_data = response.read()
                 root = ET.fromstring(xml_data)
                 
@@ -140,7 +143,7 @@ def fetch_and_translate_rss():
                 if not items:
                     items = root.findall('.//{http://www.w3.org/2005/Atom}entry')
 
-                for item in items[:5]:
+                for item in items[:4]:
                     title_elem = item.find('title') or item.find('{http://www.w3.org/2005/Atom}title')
                     raw_title = title_elem.text if title_elem is not None else ''
 
@@ -160,9 +163,9 @@ def fetch_and_translate_rss():
                         if media is not None:
                             img_url = media.attrib.get('url', '')
 
-                    if len(raw_title) > 10:
+                    if len(raw_title) > 5:
                         ru_title = safe_translate(raw_title)
-                        ru_desc = safe_translate(clean_desc[:600])
+                        ru_desc = safe_translate(clean_desc[:500])
                         
                         slug = slugify(ru_title)
                         category = detect_category(ru_title)
@@ -201,14 +204,16 @@ def fetch_and_translate_rss():
                             existing_slugs.add(slug)
                             new_count += 1
         except Exception as e:
-            print(f"Ошибка с {url}: {e}")
+            print(f"Ошибка с источником {url}: {e}")
 
     posts = posts[:150]
+    
     with open('posts.json', 'w', encoding='utf-8') as f:
         json.dump(posts, f, ensure_ascii=False, indent=2)
 
     generate_sitemap_and_rss(posts)
-    print(f"Добавлено полноценных статей: {new_count}")
+    print(f"Успешно добавлено статей: {new_count}")
 
 if __name__ == "__main__":
     fetch_and_translate_rss()
+
