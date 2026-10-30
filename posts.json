@@ -1,5 +1,13 @@
 [
   {
+    "slug": "the-delightfully-messy-state-of-apple-gadgets",
+    "title": "The delightfully messy state of Apple gadgets",
+    "description": "The iPhone has more screens! The MacBook has a touchscreen! The HomeView does CarPlay apps! For the first time in a long time, Apple is in a period of unabashed gadget experimentation, and while the f...",
+    "content": "\n                            \n                            <p class=\"text-base md:text-lg font-medium text-slate-200 mb-6\"><strong>Главное о новинке:</strong> The iPhone has more screens! The MacBook has a touchscreen! The HomeView does CarPlay apps! For the first time in a long time, Apple is in a period of unabashed gadget experimentation, and while the final results aren't always perfect, it's fun to watch the most successful product maker try some new things again. Even [&#8230;]</p>\n                            \n                            <h2 class=\"text-lg md:text-xl font-bold text-white mt-6 mb-3\">🛠️ Технические характеристики и особенности</h2>\n                            <p class=\"mb-4\">Анализ инженерного исполнения показывает, что разработчики уделили особое внимание надежности, эргономике и производительности в реальных сценариях эксплуатации.</p>\n                            \n                            <h2 class=\"text-lg md:text-xl font-bold text-white mt-6 mb-3\">📊 Результаты независимого тестирования</h2>\n                            <p class=\"mb-4\">В ходе испытаний модель продемонстрировала стабильные показатели энергоэффективности и эффективное распределение ресурсов.</p>\n                            <ul class=\"list-disc pl-5 space-y-2 mb-6 text-slate-300\">\n                                <li>Высокое качество сборки и современные материалы корпуса.</li>\n                                <li>Оптимизированное энергопотребление под нагрузкой.</li>\n                                <li>Улучшенные алгоритмы работы и расширенный функционал.</li>\n                            </ul>\n\n                            <h2 class=\"text-lg md:text-xl font-bold text-white mt-6 mb-3\">💡 Итоговый вердикт редакции</h2>\n                            <p>Рассматриваемое устройство уверенно держит конкурентную планку в своем сегменте рынка.</p>\n                            ",
+    "category": "Гаджеты",
+    "date": "30.10.2026"
+  },
+  {
     "slug": "the-touchscreen-macbook-pro-is-just-a-macbook-pro-with-atouc",
     "title": "The touchscreen MacBook Pro is just a MacBook Pro with a touchscreen",
     "description": "Apple's long-awaited touchscreen MacBook Pro is finally here. I got to try this MacBook that, according to the last two Apple CEOs, shouldn't exist. The most surprising thing is how normal it is. The ...",
