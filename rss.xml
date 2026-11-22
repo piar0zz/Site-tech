@@ -6,6 +6,22 @@
   <description>Независимые обзоры смартфонов, железа, гаджетов и бытовой техники</description>
   <language>ru-RU</language>
   <item>
+    <title><![CDATA[The vibe-coding revolution is coming to all the gadgets]]></title>
+    <link>https://piar0zz.github.io/site-tech/#the-vibe-coding-revolution-is-coming-to-all-the-gadgets</link>
+    <guid>https://piar0zz.github.io/site-tech/#the-vibe-coding-revolution-is-coming-to-all-the-gadgets</guid>
+    <description><![CDATA[This is The Stepback, a weekly newsletter breaking down one essential story from the tech world. For more on the vibe-hacking of everything, follow David Pierce. The Stepback arrives in our subscriber...]]></description>
+    <category>Гаджеты</category>
+    <pubDate>22.11.2026</pubDate>
+  </item>
+  <item>
+    <title><![CDATA[Your questions about Apple HomeView’s audio, answered]]></title>
+    <link>https://piar0zz.github.io/site-tech/#your-questions-about-apple-homeviews-audio-answered</link>
+    <guid>https://piar0zz.github.io/site-tech/#your-questions-about-apple-homeviews-audio-answered</guid>
+    <description><![CDATA[After I published my review of the HomeView, Apple's first smart display, y'all still had a ton of questions about how it works as a smart speaker. So, I spent a bunch more time testing its audio capa...]]></description>
+    <category>Бытовая техника</category>
+    <pubDate>22.11.2026</pubDate>
+  </item>
+  <item>
     <title><![CDATA[The UN fails to agree on rules regulating ‘killer robots’]]></title>
     <link>https://piar0zz.github.io/site-tech/#the-un-fails-to-agree-on-rules-regulating-killer-robots</link>
     <guid>https://piar0zz.github.io/site-tech/#the-un-fails-to-agree-on-rules-regulating-killer-robots</guid>
@@ -228,22 +244,6 @@
     <description><![CDATA[Apple's long-awaited touchscreen MacBook Pro is finally here. I got to try this MacBook that, according to the last two Apple CEOs, shouldn't exist. The most surprising thing is how normal it is. The ...]]></description>
     <category>Гаджеты</category>
     <pubDate>30.10.2026</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Anduril now says its BlueChip laptop will meet Buy American standards at launch]]></title>
-    <link>https://piar0zz.github.io/site-tech/#anduril-now-says-its-bluechip-laptop-will-meet-buy-american-</link>
-    <guid>https://piar0zz.github.io/site-tech/#anduril-now-says-its-bluechip-laptop-will-meet-buy-american-</guid>
-    <description><![CDATA[On Tuesday, defense contractor Anduril and chipmaker Qualcomm announced a partnership to build laptops entirely in the United States, starting with a single model in 2027. They also announced a "long-...]]></description>
-    <category>Железо</category>
-    <pubDate>29.10.2026</pubDate>
-  </item>
-  <item>
-    <title><![CDATA[Here’s why the iPhone Duo’s hinge could be cracking the screen]]></title>
-    <link>https://piar0zz.github.io/site-tech/#heres-why-the-iphone-duos-hinge-could-be-cracking-the-screen</link>
-    <guid>https://piar0zz.github.io/site-tech/#heres-why-the-iphone-duos-hinge-could-be-cracking-the-screen</guid>
-    <description><![CDATA[Within hours of the iPhone Duo launch last Friday, people reported that the inner screen on some brand new foldable phones was already broken. The issue was similar across many photos shared on social...]]></description>
-    <category>Смартфоны</category>
-    <pubDate>28.10.2026</pubDate>
   </item>
 </channel>
 </rss>
